@@ -1,0 +1,10 @@
+﻿@model IEnumerable<SchoolManagement.Entities.Student>
+
+
+    @foreach (var student in Model)
+    {
+        <div>
+            <h2>@student.FirstName @student.LastName</h2>
+            <h3>@student.DateOfBirth.ToShortTimeString()</h3>
+        </div>
+    }

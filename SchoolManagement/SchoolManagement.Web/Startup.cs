@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using SchoolManagement.Data;
 
 namespace SchoolManagement.Web
 {
@@ -15,6 +16,8 @@ namespace SchoolManagement.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<ISchoolRepository, SchoolRepositoryMock>();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,10 +28,25 @@ namespace SchoolManagement.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            // Expose the members of the 'Microsoft.AspNetCore.Http' namespace 
+            // at the top of the file:
+            // using Microsoft.AspNetCore.Http;
+            app.UseStatusCodePages(async context =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                context.HttpContext.Response.ContentType = "text/plain";
+
+                await context.HttpContext.Response.WriteAsync(
+                    "Status code page, status code: " +
+                    context.HttpContext.Response.StatusCode);
             });
+
+            app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();  //order is important.  this must follow UseStaticFiles()
+
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World!");
+            //});
         }
     }
 }
