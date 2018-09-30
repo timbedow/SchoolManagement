@@ -20,13 +20,13 @@ namespace SchoolManagement.Web.Controllers
         {
             ViewBag.Title = "Students";
             //var students = _schoolRepository.Students().OrderBy(s => new { s.LastName, s.FirstName });
-            var students = _schoolRepository.Students().OrderBy(s => s.LastName);
+            var students = _schoolRepository.GetAllStudents().OrderBy(s => s.LastName);
             return View(students);
         }
 
         public ViewResult List()
         {
-            return View(_schoolRepository.Students());
+            return View(_schoolRepository.GetAllStudents());
         }
     }
 }

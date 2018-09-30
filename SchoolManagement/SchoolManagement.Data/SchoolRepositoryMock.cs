@@ -17,7 +17,7 @@ namespace SchoolManagement.Data
             }
         }
 
-        public IEnumerable<Student> Students()
+        public IEnumerable<Student> GetAllStudents()
         {
             return _students;            
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Data;
+using SchoolManagement.Web.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,10 +22,14 @@ namespace SchoolManagement.Web.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.Title = "Students";
+            var students = _schoolRepository.GetAllStudents().OrderBy(s => s.LastName);
             //var students = _schoolRepository.Students().OrderBy(s => new { s.LastName, s.FirstName });
-            var students = _schoolRepository.Students().OrderBy(s => s.LastName);
-            return View(students);
+            var homeViewModel = new HomeViewModel()
+            {
+                Title = "School Management MVVM",
+                Students = students.ToList()
+            };
+            return View(homeViewModel);
         }
     }
 }

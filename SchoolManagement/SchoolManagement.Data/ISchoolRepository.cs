@@ -7,7 +7,7 @@ namespace SchoolManagement.Data
 {
     public interface ISchoolRepository
     {
-        IEnumerable<Student> Students();
+        IEnumerable<Student> GetAllStudents();
 
         Student GetStudentById(int studentId);
     }
