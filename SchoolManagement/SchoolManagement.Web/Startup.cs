@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SchoolManagement.Data;
 
@@ -14,9 +16,21 @@ namespace SchoolManagement.Web
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
         {
-            services.AddTransient<ISchoolRepository, SchoolRepositoryMock>();
+            Configuration = configuration;
+        }
+
+        public void ConfigureServices(IServiceCollection services)
+        {   
+            services.AddDbContext<SchoolManagementContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionAz")));
+
+            services.AddTransient<ISchoolRepository, SchoolRepositoryDb>();
+            //services.AddTransient<ISchoolRepository, SchoolRepositoryMock>();
             services.AddMvc();
         }
 

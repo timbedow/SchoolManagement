@@ -23,7 +23,8 @@ namespace SchoolManagement.Web.Controllers
         public IActionResult Index()
         {
             var students = _schoolRepository.GetAllStudents().OrderBy(s => s.LastName);
-            //var students = _schoolRepository.Students().OrderBy(s => new { s.LastName, s.FirstName });
+            //TODO: var students = _schoolRepository.GetAllStudents().OrderBy(s => new { s.LastName, s.FirstName });
+            //requires implementing IComparable interface
             var homeViewModel = new HomeViewModel()
             {
                 Title = "School Management MVVM",
