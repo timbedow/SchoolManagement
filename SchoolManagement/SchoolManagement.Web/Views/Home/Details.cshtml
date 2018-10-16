@@ -1,0 +1,13 @@
+﻿@model Student
+
+<h2>@Model.FirstName @Model.LastName</h2>
+
+<div class="thumbnail">
+    <img alt="@Model.FirstName" src="@Model.ImageUrl" />
+    <div class="caption-full">
+        <h3 class="pull-right">@Model.DateOfBirth.ToShortDateString()</h3>
+        <h3>
+            <a href="#">@Model.FirstName @Model.LastName</a>
+        </h3>        
+    </div>
+</div>

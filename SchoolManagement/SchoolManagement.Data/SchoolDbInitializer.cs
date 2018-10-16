@@ -20,7 +20,7 @@ namespace SchoolManagement.Data
                 new Student { Id = 5, FirstName = "Natalie", LastName = "Portman", DateOfBirth = new DateTime(1981, 06, 09), ImageUrl = "https://www.randomlists.com/img/people/natalie_portman.jpg" }, //
                 new Student { Id = 6, FirstName = "Adam", LastName = "Sandler", DateOfBirth = new DateTime(1966, 09, 09), ImageUrl = "https://www.randomlists.com/img/people/adam_sandler.jpg" },
                 new Student { Id = 7, FirstName = "Bradley", LastName = "Cooper", DateOfBirth = new DateTime(1975, 01, 05), ImageUrl = "https://www.randomlists.com/img/people/bradley_cooper.jpg" },
-                new Student { Id = 8, FirstName = "Keanu", LastName = "Portman", DateOfBirth = new DateTime(1964, 09, 02), ImageUrl = "https://www.randomlists.com/img/people/keanu_reeves.jpg" }
+                new Student { Id = 8, FirstName = "Keanu", LastName = "Reeves", DateOfBirth = new DateTime(1964, 09, 02), ImageUrl = "https://www.randomlists.com/img/people/keanu_reeves.jpg" }
             );
 
         }

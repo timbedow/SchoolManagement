@@ -27,7 +27,7 @@ namespace SchoolManagement.Web
         public void ConfigureServices(IServiceCollection services)
         {   
             services.AddDbContext<SchoolManagementContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionAz")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionDev")));
 
             services.AddTransient<ISchoolRepository, SchoolRepositoryDb>();
             //services.AddTransient<ISchoolRepository, SchoolRepositoryMock>();
@@ -55,7 +55,15 @@ namespace SchoolManagement.Web
             });
 
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();  //order is important.  this must follow UseStaticFiles()
+            //app.UseMvcWithDefaultRoute();  //order is important.  this must follow UseStaticFiles()            
+            app.UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}/{id?}"
+                        );
+                }
+            );
 
             //app.Run(async (context) =>
             //{

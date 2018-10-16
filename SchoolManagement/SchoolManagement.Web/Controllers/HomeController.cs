@@ -32,5 +32,14 @@ namespace SchoolManagement.Web.Controllers
             };
             return View(homeViewModel);
         }
+
+        public IActionResult Details(int id)
+        {
+            var student = _schoolRepository.GetStudentById(id);
+            if (student == null)
+                return NotFound();
+
+            return View(student);
+        }
     }
 }

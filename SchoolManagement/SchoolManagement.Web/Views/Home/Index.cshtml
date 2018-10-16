@@ -1,4 +1,4 @@
-﻿@model SchoolManagement.Web.ViewModels.HomeViewModel
+﻿@model HomeViewModel
 
 <h2>@Model.Title</h2>
 
@@ -10,7 +10,7 @@
             <div class="caption">
                 <h3 class="pull-right">@student.DateOfBirth.ToShortDateString()</h3>
                 <h3>
-                    @student.FirstName @student.LastName
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@student.Id">@student.FirstName @student.LastName</a>
                 </h3>
             </div>        
         </div>
